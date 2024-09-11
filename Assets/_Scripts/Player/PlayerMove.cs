@@ -7,8 +7,8 @@ public class PlayerMove : MonoBehaviour
     #region Field
 
     private GameObject _player;
-    [SerializeField] private float _speed = 2f;
-    [SerializeField] private float _rayLength = .5f;
+    private float _speed = 2f;
+    private float _rayLength = 0.5f;
 
     private bool _isEnd = false;
     private bool _isEnemy = false;
@@ -46,6 +46,7 @@ public class PlayerMove : MonoBehaviour
 
         if (hit.collider != null)
         {
+            Destroy(hit.collider.gameObject);
             return true;
         }
 

@@ -6,7 +6,8 @@ public enum EnemyType
 {
     Normal,
     Shield,
-    Fire
+    Fire,
+    Thunder,
 }
 
 
