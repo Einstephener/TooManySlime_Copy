@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 391889398630887870}
   - component: {fileID: 1371418256728986304}
-  - component: {fileID: -6310929475932736603}
+  - component: {fileID: -610171784091486887}
   m_Layer: 0
-  m_Name: Fire_NinjaStar
+  m_Name: Water_NinjaStar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.14653754, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-6310929475932736603
+--- !u!114 &-610171784091486887
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,4 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebd63a726f8e154db4bd84e0390d3fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoldWeaponData: {fileID: 11400000, guid: 43f149be924c4774c9dab5604ec01265, type: 2}
+  HoldWeaponData: {fileID: 11400000, guid: 03e1ff94f2cde5049aa7a4b7bff29b14, type: 2}

@@ -54,7 +54,7 @@ public class EnemyStatus : BaseStatus
     public override void Die()
     {
         base.Die();
-        if (!_isDead) 
+        if (!_isDead)
         {
             _isDead = true;
             animator.SetBool("IsDie", true);

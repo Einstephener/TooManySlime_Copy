@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    #region Singleton
     public static GameManager Instance
     {
         get
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
                 _instance = FindObjectOfType(typeof(GameManager)) as GameManager;
 
                 if (_instance == null)
-                    Debug.Log("no Singleton obj");
+                    Debug.Log("No Singleton");
             }
             return _instance;
         }
@@ -45,6 +46,6 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-
+    #endregion
 
 }

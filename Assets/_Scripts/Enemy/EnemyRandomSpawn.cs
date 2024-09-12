@@ -11,6 +11,7 @@ public class EnemyRandomSpawn : MonoBehaviour
     private float[] coroutineInterval = { 0.5f, 1f, 1.5f, 2f, 3f };
     public GameObject Parent;
 
+    private bool alreadyChooseWeapon = false;
     //private float _enemySpawnNum = 2f; // 몬스터를 스폰할 수 있는 숫자 증가
     //private float minSpawnInterval = 1.0f; // 스폰 주기의 최소값
     //private float intervalReductionRate = 0.1f; // 스폰 주기를 줄이는 속도
@@ -23,7 +24,7 @@ public class EnemyRandomSpawn : MonoBehaviour
 
     private void StartEnemyRoutine()
     {
-        StartCoroutine("EnemySpawnRoutine");
+        StartCoroutine(EnemySpawnRoutine());
     }
 
     IEnumerator EnemySpawnRoutine()
@@ -33,32 +34,49 @@ public class EnemyRandomSpawn : MonoBehaviour
 
         int spawnCount = 0;
         int enemyIndex = 0;
+
+        int chooseWeaponProbability = Random.Range(0, 50);
+
         while (true)
         {
-            if (!GameManager.Instance.isFight)
+            if (!GameManager.Instance.isFight) //전투중일 때는 생산 중지.
             {
-                foreach (float posX in spawnPointsX)
+                if(!alreadyChooseWeapon && chooseWeaponProbability < 5)
                 {
-                    int index = Random.Range(0, enemyIndex);
-                    SpawnEnemy(posX, index);
-                }
-                spawnCount++;
 
-                if (spawnCount % 10 == 0) //10번 소환마다 소환되는 적 종류 변경
+                }
+                else
                 {
-                    enemyIndex++;
+                    foreach (float posX in spawnPointsX)
+                    {
+                        int index = Random.Range(0, enemyIndex);
+                        SpawnEnemy(posX, index);
+                    }
+                    spawnCount++;
+
+                    if (spawnCount % 10 == 0) //10번 소환마다 소환되는 적 종류 변경
+                    {
+                        enemyIndex++;
+                    }
                 }
             }
             yield return new WaitForSeconds(SetSpawnSpeed());
         }
     }
 
+    // 무기 선택 칸 생성.
+    private void SpawnWeaponChoose()
+    {
 
+    }
+
+
+    //적 생성
     private void SpawnEnemy(float posX, int index)
     {
         Vector3 spawnPos = new Vector3(posX, transform.position.y, transform.position.z);
 
-        if (Random.Range(0, 5) == 0)
+        if (Random.Range(0, 5) == 0) // 20퍼센트
         {
             index += 1;
         }
@@ -68,7 +86,7 @@ public class EnemyRandomSpawn : MonoBehaviour
         {
             index = EnemyPrefabs.Length - 1;
         }
-        Instantiate(EnemyPrefabs[index], spawnPos, Quaternion.identity);
+        Instantiate(EnemyPrefabs[index], spawnPos, Quaternion.identity, Parent.transform);
         /*GameObject enemyObject = */
         //EnemyStatus enemy = enemyObject.GetComponent<EnemyStatus>();
     }

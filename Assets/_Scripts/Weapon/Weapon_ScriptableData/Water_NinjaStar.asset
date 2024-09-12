@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9863e8bd4353c254c992a517cea175f5, type: 3}
-  m_Name: Fire_NinjaStar
+  m_Name: Water_NinjaStar
   m_EditorClassIdentifier: 
   ThisWeapon: 2
-  ThisProperties: 0
-  Prefab: {fileID: 2744226171759395694, guid: 190dade587bb83c4788921945c1705b7, type: 3}
-  WeaponAttackPower: 0
+  ThisProperties: 2
+  Prefab: {fileID: 2744226171759395694, guid: 6a60a7fb59eeb55478be063ff68a5cbb, type: 3}
+  WeaponAttackPower: 10

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Fire_Sword
   m_EditorClassIdentifier: 
   ThisWeapon: 0
-  ThisProperties: 0
+  ThisProperties: 1
   Prefab: {fileID: 2682500816340859980, guid: 009f1917181cff94cb7d7afb526871ed, type: 3}
-  WeaponAttackPower: 0
+  WeaponAttackPower: 10

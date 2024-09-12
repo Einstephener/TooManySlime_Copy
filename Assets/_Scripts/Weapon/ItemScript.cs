@@ -10,6 +10,7 @@ public enum Weapon
 }
 public enum Properties
 {
+    Normal,
     Fire,
     Water,
 }

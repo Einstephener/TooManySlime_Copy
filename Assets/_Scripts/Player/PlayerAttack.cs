@@ -11,17 +11,20 @@ public class PlayerAttack : MonoBehaviour
 
     private PlayerMove _playerMove;
 
-    public GameObject BasicSword; 
+    public GameObject Hand; 
 
     public GameObject[] Weapon;
 
     private PlayerStatus _playerStatus;
+
+    private Animator _playerAnimator;
     #endregion
 
     private void Awake()
     {
         _playerMove = GetComponent<PlayerMove>();
         _playerStatus = GetComponent<PlayerStatus>();
+        _playerAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -29,18 +32,20 @@ public class PlayerAttack : MonoBehaviour
         if (_playerMove.CheckEnemy() != null)
         {
             GameObject Enemy = _playerMove.CheckEnemy();
+            _playerAnimator.SetTrigger("Attack");
             AttackBySword(Enemy);
         }
     }
 
     private void AttackBySword(GameObject Enemy)
     {
-        if(Enemy.TryGetComponent(out EnemyStatus enemyStatus))
+        if(!Enemy.TryGetComponent(out EnemyStatus enemyStatus))
         {
-            Debug.Log("EnemyState");
+            Debug.Log("EnemyState Null");
         }
 
-        StartCoroutine(AttackEnemy(enemyStatus)); // 데미지 주기.
+        // 데미지 주기.
+        StartCoroutine(AttackEnemy(enemyStatus)); 
 
         ////검으로 공격하는 메서드.
         //ItemScript nowWeapon = BasicSword.GetComponent<ItemScript>();
@@ -51,8 +56,10 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(_attackDelay);
 
+        //공격 애니메이션.
         enemyStatus.HitAnimation();
 
+        //데미지.
         enemyStatus.Health -= _playerStatus.AttackPower;
         _playerStatus.Health -= enemyStatus.AttackPower;
     }
