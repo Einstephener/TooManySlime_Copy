@@ -1,62 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyRandomSpawn : MonoBehaviour
 {
     public GameObject[] EnemyPrefabs;
-    public Transform[] spawnPoints; // 적이 소환될 위치들 (최대 5개)
+    public float[] spawnPointsX = {-2f, -1f, 0f, 1f, 2f};
+    private float spawnInterval;
     public GameObject Parent;
 
     private float _enemySpawnNum = 2f; // 몬스터를 스폰할 수 있는 숫자 증가
-    private float spawnInterval; // 스폰 주기 초기값
     private float minSpawnInterval = 1.0f; // 스폰 주기의 최소값
     private float intervalReductionRate = 0.1f; // 스폰 주기를 줄이는 속도
     private bool isSpawning = false; // 코루틴 중복 방지를 위한 플래그
 
     private void Start()
     {
-        // 초기 코루틴 시작
-        StartCoroutine(SpawnEnemies());
-        spawnInterval = 5f;
+        StartEnemyRoutine();
     }
 
-    private void Update()
+    private void StartEnemyRoutine()
     {
-        _enemySpawnNum += Time.deltaTime;
-
-
-        // 만약 spawnInterval이 0 이하가 되면 다시 스폰 코루틴 실행
-        if (!isSpawning)
-        {
-            StartCoroutine(SpawnEnemies());
-        }
+        StartCoroutine("EnemySpawnRoutine");
     }
 
-    private IEnumerator SpawnEnemies()
+    IEnumerator EnemySpawnRoutine()
     {
-        isSpawning = true;
+        yield return new WaitForSeconds(3f);
 
-        // 적 스폰 전에 스폰 간격만큼 대기
-        yield return new WaitForSeconds(spawnInterval);
-
-        spawnInterval -= Time.deltaTime; // 스폰 주기 초기값
-        if (spawnInterval < minSpawnInterval)
+        int spawnCount = 0;
+        int enemyIndex = 0;
+        while (true)
         {
-            spawnInterval = minSpawnInterval;
-        }
-
-        // 스폰 포인트마다 적을 생성
-        for (int i = 0; i < spawnPoints.Length; i++)
-        {
-            float randomValue = Random.Range(0, _enemySpawnNum);
-            if (randomValue >= 1)
+            foreach (float posX in spawnPointsX)
             {
-                Instantiate(SelectRandomEnemy(), spawnPoints[i].position, spawnPoints[i].rotation, Parent.transform);
+                int index = Random.Range(0, enemyIndex);
+                SpawnEnemy(posX, index);
             }
+            spawnCount++;
+            if (spawnCount % 10 == 0)
+            {
+                enemyIndex++;
+            }
+
+            yield return new WaitForSeconds(spawnInterval);
+        }
+    }
+
+
+    private void SpawnEnemy(float posX, int index)
+    {
+        Vector3 spawnPos = new Vector3(posX, transform.position.y, transform.position.z);
+
+        if(Random.Range(0,5) == 0)
+        {
+            index += 1;
         }
 
-        isSpawning = false;
+
+        if(index >= EnemyPrefabs.Length)
+        {
+            index = EnemyPrefabs.Length - 1;
+        }
+
+        Instantiate(EnemyPrefabs[index], spawnPos, Quaternion.identity);
     }
 
     private GameObject SelectRandomEnemy()
