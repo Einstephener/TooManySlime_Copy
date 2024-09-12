@@ -2468,6 +2468,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &557679838
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3933457553982712928, guid: 248d6a664332d4d4c852e1e7f0242547, type: 3}
+      propertyPath: m_Name
+      value: Green Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933457553982712931, guid: 248d6a664332d4d4c852e1e7f0242547, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933457553982712931, guid: 248d6a664332d4d4c852e1e7f0242547, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933457553982712931, guid: 248d6a664332d4d4c852e1e7f0242547, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933457553982712931, guid: 248d6a664332d4d4c852e1e7f0242547, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933457553982712931, guid: 248d6a664332d4d4c852e1e7f0242547, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933457553982712931, guid: 248d6a664332d4d4c852e1e7f0242547, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933457553982712931, guid: 248d6a664332d4d4c852e1e7f0242547, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933457553982712931, guid: 248d6a664332d4d4c852e1e7f0242547, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933457553982712931, guid: 248d6a664332d4d4c852e1e7f0242547, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933457553982712931, guid: 248d6a664332d4d4c852e1e7f0242547, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933457553982712931, guid: 248d6a664332d4d4c852e1e7f0242547, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 248d6a664332d4d4c852e1e7f0242547, type: 3}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2736,9 +2797,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Color: {r: 0.5943599, g: 0.16340333, b: 0.6792453, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2819,7 +2880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  AttackPower: 10
+  AttackPower: 100
   Defense: 10
   shield: 0
 --- !u!61 &1078113678
@@ -3566,9 +3627,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyPrefabs:
-  - {fileID: 7485846965448123488, guid: 87163705732748749b1b8a204d8579e6, type: 3}
-  - {fileID: 7485846965448123488, guid: 9e4a778081d645141afc16462a6d7c79, type: 3}
-  - {fileID: 7485846965448123488, guid: 243fc4bb17c048d4eb28b5c1ca50d19f, type: 3}
+  - {fileID: 8068589428734277748, guid: d37a30fd54194d546a9713dc2cb9a126, type: 3}
+  - {fileID: 5008534755244437952, guid: 91f200ac5475e2c4f8759f3a8ad4a815, type: 3}
+  - {fileID: 8048524908834707888, guid: f8472f496ad3a0449955eefb25f6349b, type: 3}
   spawnPointsX:
   - -2
   - -1

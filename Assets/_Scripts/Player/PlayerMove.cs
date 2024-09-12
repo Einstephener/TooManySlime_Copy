@@ -34,11 +34,12 @@ public class PlayerMove : MonoBehaviour
     public GameObject CheckEnemy()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, _rayLength, enemyLayer);
-        if (hit.collider.gameObject != null)
+        if (hit.collider != null)
         {
             return hit.collider.gameObject;
         }
 
         return null;
+
     }
 }

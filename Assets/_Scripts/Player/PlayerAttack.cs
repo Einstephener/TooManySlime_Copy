@@ -28,23 +28,32 @@ public class PlayerAttack : MonoBehaviour
     {
         if (_playerMove.CheckEnemy() != null)
         {
-            AttackBySword(_playerMove.CheckEnemy());
+            GameObject Enemy = _playerMove.CheckEnemy();
+            AttackBySword(Enemy);
         }
     }
 
     private void AttackBySword(GameObject Enemy)
     {
-        //검으로 공격하는 메서드.
-        EnemyStatus enemyStatus = Enemy.GetComponent<EnemyStatus>();
-        //ItemScript nowWeapon = BasicSword.GetComponent<ItemScript>();
+        if(Enemy.TryGetComponent(out EnemyStatus enemyStatus))
+        {
+            Debug.Log("EnemyState");
+        }
+
         StartCoroutine(AttackEnemy(enemyStatus)); // 데미지 주기.
+
+        ////검으로 공격하는 메서드.
+        //ItemScript nowWeapon = BasicSword.GetComponent<ItemScript>();
     }
 
 
     IEnumerator AttackEnemy(EnemyStatus enemyStatus)
     {
+        yield return new WaitForSecondsRealtime(_attackDelay);
+
+        enemyStatus.HitAnimation();
+
         enemyStatus.Health -= _playerStatus.AttackPower;
         _playerStatus.Health -= enemyStatus.AttackPower;
-        yield return new WaitForSecondsRealtime(_attackDelay);
     }
 }

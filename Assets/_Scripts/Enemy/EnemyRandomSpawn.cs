@@ -11,10 +11,10 @@ public class EnemyRandomSpawn : MonoBehaviour
     private float[] coroutineInterval = { 0.5f, 1f, 1.5f, 2f, 3f };
     public GameObject Parent;
 
-    private float _enemySpawnNum = 2f; // 몬스터를 스폰할 수 있는 숫자 증가
-    private float minSpawnInterval = 1.0f; // 스폰 주기의 최소값
-    private float intervalReductionRate = 0.1f; // 스폰 주기를 줄이는 속도
-    private bool isSpawning = false; // 코루틴 중복 방지를 위한 플래그
+    //private float _enemySpawnNum = 2f; // 몬스터를 스폰할 수 있는 숫자 증가
+    //private float minSpawnInterval = 1.0f; // 스폰 주기의 최소값
+    //private float intervalReductionRate = 0.1f; // 스폰 주기를 줄이는 속도
+    //private bool isSpawning = false; // 코루틴 중복 방지를 위한 플래그
 
     private void Start()
     {
