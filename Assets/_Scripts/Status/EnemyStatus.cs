@@ -14,12 +14,25 @@ public enum EnemyType
 public class EnemyStatus : BaseStatus
 {
     public EnemyType enemyType;
+    private float moveSpeed = 5f;
+    private float minY = -5f;
+
+    private void Update()
+    {
+        if (!GameManager.Instance.isFight)
+        {
+            transform.position += Vector3.down * moveSpeed * Time.deltaTime;
+            if(transform.position.y < minY)
+            {
+                Die();
+            }
+        }
+    }
 
 
     public override void Die()
     {
         base.Die();
-        // 적이 사망하면 적 처치 로직 실행 (예: 보상 지급)
-        Debug.Log("적이 사망했습니다. 플레이어가 경험치를 얻습니다.");
+        Destroy(gameObject);
     }
 }

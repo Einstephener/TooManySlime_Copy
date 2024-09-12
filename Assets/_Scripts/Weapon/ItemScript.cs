@@ -24,4 +24,6 @@ public class ItemScript : ScriptableObject
 
     public float WeaponAttackPower;
 
+
+
 }
