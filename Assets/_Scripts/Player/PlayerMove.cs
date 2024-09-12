@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
         {
             if(!CheckEnemy())
             {
-                transform.position +=new Vector3(0,_speed *Time.deltaTime,0);
+                //transform.position +=new Vector3(0,_speed *Time.deltaTime,0);
             }
             else
             {
@@ -40,6 +40,10 @@ public class PlayerMove : MonoBehaviour
         }
     }
     
+    
+
+
+
     private bool CheckEnemy()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, _rayLength, enemyLayer);
