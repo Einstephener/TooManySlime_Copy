@@ -31,4 +31,5 @@ public class BaseStatus : MonoBehaviour
     {
         // 사망 시 처리 (예: 오브젝트 비활성화 등)
     }
+
 }

@@ -18,6 +18,8 @@ public class PlayerAttack : MonoBehaviour
     private PlayerStatus _playerStatus;
 
     private Animator _playerAnimator;
+
+    public GameObject StarRotationParent;
     #endregion
 
     private void Awake()
@@ -47,8 +49,6 @@ public class PlayerAttack : MonoBehaviour
         // 데미지 주기.
         StartCoroutine(AttackEnemy(enemyStatus)); 
 
-        ////검으로 공격하는 메서드.
-        //ItemScript nowWeapon = BasicSword.GetComponent<ItemScript>();
     }
 
 
@@ -60,7 +60,13 @@ public class PlayerAttack : MonoBehaviour
         enemyStatus.HitAnimation();
 
         //데미지.
-        enemyStatus.Health -= _playerStatus.AttackPower;
-        _playerStatus.Health -= enemyStatus.AttackPower;
+        enemyStatus.TakeDamage(_playerStatus.AttackPower);
+        _playerStatus.TakeDamage(enemyStatus.AttackPower);
     }
+
+    public void SpawnStar(WeaponData weaponData)
+    {
+        StarRotationParent.GetComponent<StarRotation>().MakeNewStar(weaponData);
+    }
+
 }

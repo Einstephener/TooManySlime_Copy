@@ -15,4 +15,5 @@ MonoBehaviour:
   ThisWeapon: 0
   ThisProperties: 0
   Prefab: {fileID: 2682500816340859980, guid: 49b2e62e69dda234c8c53ab902611087, type: 3}
+  InventoryIcon_Weapon: {fileID: 21300000, guid: d4eef0f089644334db22328a83584f2d, type: 3}
   WeaponAttackPower: 10

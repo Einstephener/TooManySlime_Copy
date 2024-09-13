@@ -5,18 +5,21 @@ using UnityEngine;
 
 public class EnemyRandomSpawn : MonoBehaviour
 {
+    #region Field
+
     public GameObject[] EnemyPrefabs;
-    public float[] spawnPointsX = { -2f, -1f, 0f, 1f, 2f };
-    private float spawnInterval = 1f;
-    private float[] coroutineInterval = { 0.5f, 1f, 1.5f, 2f, 3f };
+    public GameObject[] WeaponChoosePrefabs;
+    public GameObject WeaponChoice;
+    private float[] _spawnPointsX = { -2f, -1f, 0f, 1f, 2f };
+    private float[] _coroutineInterval = { 0.5f, 1f, 1.5f, 2f, 3f };
     public GameObject Parent;
 
-    private bool alreadyChooseWeapon = false;
+    private bool _alreadyChooseWeapon = false;
     //private float _enemySpawnNum = 2f; // 몬스터를 스폰할 수 있는 숫자 증가
     //private float minSpawnInterval = 1.0f; // 스폰 주기의 최소값
     //private float intervalReductionRate = 0.1f; // 스폰 주기를 줄이는 속도
     //private bool isSpawning = false; // 코루틴 중복 방지를 위한 플래그
-
+    #endregion
     private void Start()
     {
         StartEnemyRoutine();
@@ -34,20 +37,23 @@ public class EnemyRandomSpawn : MonoBehaviour
 
         int spawnCount = 0;
         int enemyIndex = 0;
-
-        int chooseWeaponProbability = Random.Range(0, 50);
-
+                
         while (true)
         {
             if (!GameManager.Instance.isFight) //전투중일 때는 생산 중지.
             {
-                if(!alreadyChooseWeapon && chooseWeaponProbability < 5)
+                if(!_alreadyChooseWeapon)
                 {
-
+                    SpawnWeaponChoose();
+                    _alreadyChooseWeapon = true;
                 }
                 else
                 {
-                    foreach (float posX in spawnPointsX)
+                    int numSpawnPoints = GetRandomSpawnPointCount();
+
+                    List<float> selectedSpawnPoints = GetRandomSpawnPoints(numSpawnPoints);
+
+                    foreach (float posX in selectedSpawnPoints)
                     {
                         int index = Random.Range(0, enemyIndex);
                         SpawnEnemy(posX, index);
@@ -57,6 +63,7 @@ public class EnemyRandomSpawn : MonoBehaviour
                     if (spawnCount % 10 == 0) //10번 소환마다 소환되는 적 종류 변경
                     {
                         enemyIndex++;
+                        _alreadyChooseWeapon = false;
                     }
                 }
             }
@@ -64,10 +71,10 @@ public class EnemyRandomSpawn : MonoBehaviour
         }
     }
 
-    // 무기 선택 칸 생성.
+    // 무기 선택 칸 생성.,
     private void SpawnWeaponChoose()
     {
-
+        Instantiate(WeaponChoice, transform.position, Quaternion.identity, Parent.transform);
     }
 
 
@@ -93,9 +100,45 @@ public class EnemyRandomSpawn : MonoBehaviour
 
     private float SetSpawnSpeed()
     {
-        int coroutineIndex = Random.Range(0, coroutineInterval.Length);
-        float SpawnSpeed = coroutineInterval[coroutineIndex];
+        int coroutineIndex = Random.Range(0, _coroutineInterval.Length);
+        float SpawnSpeed = _coroutineInterval[coroutineIndex];
         return SpawnSpeed;
+    }
+
+    // 랜덤한 스폰 좌표 개수를 결정하는 메서드 (1개 ~ 5개)
+    private int GetRandomSpawnPointCount()
+    {
+        // 확률 분포 설정: 1개가 나올 확률이 가장 낮고, 5개가 나올 확률이 가장 높음
+        int[] probabilities = { 5, 15, 25, 40, 60 }; // 총합 115, 5개가 나올 확률이 가장 큼
+        int randomValue = Random.Range(0, 145);
+
+        int cumulativeProbability = 0;
+        for (int i = 0; i < probabilities.Length; i++)
+        {
+            cumulativeProbability += probabilities[i];
+            if (randomValue < cumulativeProbability)
+            {
+                return i + 1; // 1개 ~ 5개
+            }
+        }
+
+        return 5; // 기본적으로 5개를 리턴 (이 부분은 논리적으로 도달할 수 없음)
+    }
+
+    // 선택된 개수만큼 랜덤한 스폰 좌표를 반환
+    private List<float> GetRandomSpawnPoints(int numPoints)
+    {
+        List<float> spawnPointsList = new List<float>(_spawnPointsX);
+        List<float> selectedPoints = new List<float>();
+
+        for (int i = 0; i < numPoints; i++)
+        {
+            int randomIndex = Random.Range(0, spawnPointsList.Count);
+            selectedPoints.Add(spawnPointsList[randomIndex]);
+            spawnPointsList.RemoveAt(randomIndex); // 중복 방지를 위해 선택된 좌표 제거
+        }
+
+        return selectedPoints;
     }
 
 
