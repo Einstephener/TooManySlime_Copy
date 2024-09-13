@@ -62,6 +62,7 @@ public class PlayerAttack : MonoBehaviour
         //µ¥¹ÌÁö.
         enemyStatus.TakeDamage(_playerStatus.AttackPower);
         _playerStatus.TakeDamage(enemyStatus.AttackPower);
+
     }
 
     public void SpawnStar(WeaponData weaponData)

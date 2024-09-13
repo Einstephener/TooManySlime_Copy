@@ -17,7 +17,7 @@ public class PlayerStatus : BaseStatus
 
     private void Start()
     {
-        InitializeStatus(_playerHealth, 100f, 100f);
+        InitializeStatus(_playerHealth, 100f, 50f);
         HealthSliderSet();
     }
 

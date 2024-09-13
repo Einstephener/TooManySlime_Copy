@@ -71,14 +71,14 @@ public class EnemyRandomSpawn : MonoBehaviour
         }
     }
 
-    // 무기 선택 칸 생성.,
+    // 무기 선택 칸 생성.
     private void SpawnWeaponChoose()
     {
         Instantiate(WeaponChoice, transform.position, Quaternion.identity, Parent.transform);
     }
 
 
-    //적 생성
+    //적 생성.
     private void SpawnEnemy(float posX, int index)
     {
         Vector3 spawnPos = new Vector3(posX, transform.position.y, transform.position.z);
@@ -109,7 +109,7 @@ public class EnemyRandomSpawn : MonoBehaviour
     private int GetRandomSpawnPointCount()
     {
         // 확률 분포 설정: 1개가 나올 확률이 가장 낮고, 5개가 나올 확률이 가장 높음
-        int[] probabilities = { 5, 15, 25, 40, 60 }; // 총합 115, 5개가 나올 확률이 가장 큼
+        int[] probabilities = { 5, 15, 25, 40, 60 }; // 총합 145, 5개가 나올 확률이 가장 큼
         int randomValue = Random.Range(0, 145);
 
         int cumulativeProbability = 0;
@@ -122,7 +122,7 @@ public class EnemyRandomSpawn : MonoBehaviour
             }
         }
 
-        return 5; // 기본적으로 5개를 리턴 (이 부분은 논리적으로 도달할 수 없음)
+        return 5; // 기본적으로 5개를 리턴
     }
 
     // 선택된 개수만큼 랜덤한 스폰 좌표를 반환
@@ -142,22 +142,22 @@ public class EnemyRandomSpawn : MonoBehaviour
     }
 
 
-    private GameObject SelectRandomEnemy()
-    {
-        // 랜덤 값을 생성하여 확률에 따라 적을 선택
-        float randomValue = Random.Range(0f, 100f); // 0 ~ 100 사이의 값
+    //private GameObject SelectRandomEnemy()
+    //{
+    //    // 랜덤 값을 생성하여 확률에 따라 적을 선택
+    //    float randomValue = Random.Range(0f, 100f); // 0 ~ 100 사이의 값
 
-        if (randomValue <= 90f)  // 90% 확률로 첫 번째 적
-        {
-            return EnemyPrefabs[0];
-        }
-        else if (randomValue <= 98f)  // 8% 확률로 두 번째 적
-        {
-            return EnemyPrefabs[1];
-        }
-        else  // 2% 확률로 세 번째 적
-        {
-            return EnemyPrefabs[2];
-        }
-    }
+    //    if (randomValue <= 90f)  // 90% 확률로 첫 번째 적
+    //    {
+    //        return EnemyPrefabs[0];
+    //    }
+    //    else if (randomValue <= 98f)  // 8% 확률로 두 번째 적
+    //    {
+    //        return EnemyPrefabs[1];
+    //    }
+    //    else  // 2% 확률로 세 번째 적
+    //    {
+    //        return EnemyPrefabs[2];
+    //    }
+    //}
 }

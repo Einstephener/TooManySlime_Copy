@@ -12,7 +12,7 @@ public class PlayerHealthBar : MonoBehaviour
     {
         rectTransform = GetComponent<RectTransform>();
     }
-    private void FixedUpdate()
+    private void Update()
     {
         rectTransform.position = Camera.main.WorldToScreenPoint(player.transform.position + offset);
     }
