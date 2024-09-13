@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -16,9 +17,16 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float toX = Mathf.Clamp(mousePos.x, -2.6f, 2.6f);
-        transform.position = new Vector3(toX, transform.position.y, transform.position.z);
+        if(!GameManager.Instance.isPlayerMove)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            float toX = Mathf.Clamp(mousePos.x, -2.6f, 2.6f);
+            transform.position = new Vector3(toX, transform.position.y, transform.position.z);
+        }
+        else
+        {
+            transform.position += new Vector3(0, 3* Time.deltaTime, 0);
+        }
 
         if (CheckEnemy() != null)
         {

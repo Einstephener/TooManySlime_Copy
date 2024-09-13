@@ -79,7 +79,7 @@ public class EnemyStatus : BaseStatus
 
     private void SetDamageTxt(GameObject DamageTxtUI, float Damange)
     {
-        GameObject UI = Instantiate(DamageTxtUI, gameObject.transform);
+        GameObject UI = Instantiate(DamageTxtUI, gameObject.transform.position, Quaternion.identity, transform);
         TMP_Text getDamange = UI.GetComponentInChildren<TMP_Text>();
         getDamange.text = Damange.ToString();
         RectTransform rectTransform = DamageTxtUI.GetComponent<RectTransform>();

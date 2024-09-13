@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     #region Field
 
     [HideInInspector] public bool isFight = false;
+    [HideInInspector] public bool isEnd = false;
+    [HideInInspector] public bool isPlayerMove = false;
 
 
     #endregion
@@ -48,4 +50,15 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    public void EndGame()
+    {
+        isEnd = true;
+        StartCoroutine(PlayerMoveForward());
+    }
+
+    IEnumerator PlayerMoveForward()
+    {
+        yield return new WaitForSecondsRealtime(4f);
+        isPlayerMove = true;
+    }
 }

@@ -15,10 +15,7 @@ public class EnemyRandomSpawn : MonoBehaviour
     public GameObject Parent;
 
     private bool _alreadyChooseWeapon = false;
-    //private float _enemySpawnNum = 2f; // 몬스터를 스폰할 수 있는 숫자 증가
-    //private float minSpawnInterval = 1.0f; // 스폰 주기의 최소값
-    //private float intervalReductionRate = 0.1f; // 스폰 주기를 줄이는 속도
-    //private bool isSpawning = false; // 코루틴 중복 방지를 위한 플래그
+
     #endregion
     private void Start()
     {
@@ -40,7 +37,8 @@ public class EnemyRandomSpawn : MonoBehaviour
                 
         while (true)
         {
-            if (!GameManager.Instance.isFight) //전투중일 때는 생산 중지.
+            //전투중일 때는 생산 중지. 게임 종료시 생산 중지.
+            if (!GameManager.Instance.isFight && !GameManager.Instance.isEnd) 
             {
                 if(!_alreadyChooseWeapon)
                 {
@@ -64,6 +62,12 @@ public class EnemyRandomSpawn : MonoBehaviour
                     {
                         enemyIndex++;
                         _alreadyChooseWeapon = false;
+
+                        if (enemyIndex > 5)
+                        {
+                            //게임 종료 메서드 실행.
+                            GameManager.Instance.EndGame();
+                        }
                     }
                 }
             }
